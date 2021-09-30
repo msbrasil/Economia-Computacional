@@ -193,5 +193,147 @@ vecD
 length(vecD)
 
 ### Subsetting and Element Extraction
-#page 38
+
+myvec <- c(5, -2.3, 4, 4, 4, 6, 8, 10, 40221, -8)
+length(myvec)
+
+myvec[1] #access individual element
+
+foo <- myvec[2]
+foo
+
+myvec[length(myvec)]
+
+myvec.len <- length(myvec)
+
+myvec.len
+bar <- myvec[myvec.len-1] #index may be an arithmetic function
+bar
+
+1:myvec.len
+
+myvec[-1] #this line produces myvec without the first element
+myvec[-2] 
+
+qux <- myvec[-(myvec.len-1)]
+qux
+
+c(qux[-length(qux)], bar, qux[length(qux)])
+
+myvec[c(1, 3, 5)] #subset using vector of indexes
+foo <- myvec[1:4]
+foo
+
+foo[length(foo):2] #elements 4, 3 and 2
+
+indexes <- c(4, rep(2, times = 3), 1, 1, 2, 3:1)
+indexes
+foo[indexes]
+
+foo[-c(1,3)] #deleting more than one element
+
+bar <- c(3, 2, 4, 4, 1, 2, 4, 1, 0, 0,5)
+bar
+
+bar[1] <- 6 #overwrite certain element
+bar
+
+bar[c(2, 4, 6)] <- c(-2, -0.5, -1)
+bar
+
+bar[7:10] <- 100
+bar
+
+# Exercise 2.4
+
+#a.
+
+exvec <- c(seq(3, 6, length.out=5), rep(c(2, -5.1, -33), times=2), (7/42+2))
+exvec
+
+#b.
+
+firstAndLastElement <- exvec[c(1, 12)]
+firstAndLastElement
+
+#c. 
+
+FirstAndLastOmitted <- exvec[c(-1, -12)]
+FirstAndLastOmitted
+
+#d.
+
+reconstructedVec <- c(firstAndLastElement[1], FirstAndLastOmitted, firstAndLastElement[2]) 
+reconstructedVec
+
+#e.
+
+exvec <- sort(exvec)
+exvec
+
+#f. 
+
+exvec[12:1]
+sort(exvec, decreasing = TRUE)
+
+#g. 
+
+repeatedElements <- c(rep(FirstAndLastOmitted[3], times=3), rep(FirstAndLastOmitted[6], times=4), length(FirstAndLastOmitted) )
+repeatedElements
+
+#h.
+
+copyE <- exvec
+copyE
+
+copyE[c(1, 5:7, 12)] <- c(99:94)
+copyE
+
+### Vector-Oriented Behavior
+
+foo <- 5.5:0.5
+foo
+
+foo - c(2, 4, 6, 8, 10, 12) #operation on multiples elements
+
+bar <- c(1, -1)
+foo * bar
+
+baz <- c(1, -1, 0.5, -0.50)
+
+foo * baz #vector lengths are not even divisible
+
+qux <- 3
+foo + qux
+
+foo
+sum(foo) #sum of their elements
+prod(foo) #their product
+
+foo[c(1, 3, 5, 6)] <- c(-99, 99)
+foo
+
+### Exercise 2.5 
+
+#a. dont know how to do that
+
+#b.
+
+fahrenheit <- c(45, 77, 20, 19, 101, 120, 212)
+
+(fahrenheit - 32)*(5/9)
+
+#c.
+
+vecC <- rep(c(1, 2), times=3) * c(2, 4, 6) #incorrect pag 37
+vecC 
+
+#d.
+
+
+
+
+
+
+
 
