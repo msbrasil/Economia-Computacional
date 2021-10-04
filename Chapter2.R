@@ -325,10 +325,27 @@ fahrenheit <- c(45, 77, 20, 19, 101, 120, 212)
 
 #c.
 
-vecC <- rep(c(1, 2), times=3) * c(2, 4, 6) #incorrect pag 37
-vecC 
+vecC <- rep(c(1,2), times=2) * c(2, 4, 6)
+vecC
 
 #d.alteração
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
