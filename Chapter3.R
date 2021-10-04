@@ -59,6 +59,181 @@ A[-1, -2]
 
 A[-1, -c(2,3)]
 
+B <- A
+
+B[2,] <- 1:3 #overwrite second row with sequence 1,2,3
+B
+
+B[c(1, 3), 2] <- 900
+B
+
+B[,3] <- B[3,]
+B
+
+B[c(1, 3), c(1, 3)] <- c(-7, 7)
+B
+
+B[c(1,3), 2:1] <- c(65, -65, 88, -88)
+B
+
+diag(B) <- rep(0, times=3)
+B
+
+### Exercise 3.1
+
+#a. 
+
+matrixA <- matrix(c(4.3, 3.1, 8.2, 8.2, 3.2, 0.9, 1.6, 6.5), nrow=4, ncol=2)
+matrixA
+
+#b.
+
+dim(matrixA[-1,])
+
+#c.
+
+matrixA[,2] <- sort(matrixA[,2])
+matrixA
+
+#d.
+
+matrix(matrixA[-4,-1])
+
+#e.
+
+matrixE <- matrix(matrixA[-c(1,2),], 2, 2)
+matrixE
+
+#f. 
+diag(matrixA)*-1/2 #dafuck
+
+## Matrix Operations and Algebra
+
+### Matrix Transpose
+
+A <- rbind(c(2, 5, 2), c(6, 1, 4))
+A
+
+t(A) #transpose function
+
+t(t(A)) 
+
+### Indentity Matrix
+
+A <- diag(x=3)
+A
+
+### Scalar Multiple of a Matrix
+
+A <- rbind(c(2, 5, 2), c(6, 1, 4))
+A
+a <- 2
+a*A
+
+### Matrix Addition and Subtraction
+
+A <- cbind(c(2, 5, 2), c(6, 1, 4))
+A
+
+B <- cbind(c(-2, 3, 6), c(8.1, 8.2, -9.8))
+B
+A-B
+
+### Matrix multiplication
+
+A <- rbind(c(2, 5, 2), c(6, 1, 4))
+dim(A)
+B <- cbind(c(3, -1, 1), c(-3, 1, 5))
+dim(B)
+
+A%*%B
+
+B%*%A
+
+### Matrix inversion
+
+A <- matrix(data=c(3,4,1,2),nrow=2,ncol=2)
+A
+
+solve(A)
+
+A%*%solve(A)
+
+### Exercise 3.2
+
+#a.
+
+(2/7) * (matrix(1:6, nrow=3, ncol=2) - matrix(seq(from=10, to=60, by = 10), nrow=3, ncol=2)) 
+
+#b.
+
+A <- matrix(c(1, 2, 7), ncol = 1)
+B <- matrix(c(3, 4, 8), ncol = 1)
+
+A%*%B #not possible
+
+t(A)%*%B #possible
+
+t(B)%*%(A%*%t(A)) #possible
+
+(A%*%t(A))%*%t(B) #not possible
+
+solve((B%*%t(B))+(A%*%t(A)) - 100*matrix(diag(x=3))) #not possible
+
+#c.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
