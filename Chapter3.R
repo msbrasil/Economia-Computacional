@@ -182,6 +182,72 @@ solve((B%*%t(B))+(A%*%t(A)) - 100*matrix(diag(x=3))) #not possible
 
 #c.
 
+A <- diag(x=c(2, 3, 5, -1))
+A
+
+solve(A) %*% A - diag(x=4)
+
+## Multidimensional Arrays
+
+### Definition
+
+AR <- array(data = 1:24, dim=c(3,4,2)) #dim argument: rows, columns, layers
+AR
+
+BR <- array(data=rep(1:24, times=3), dim=c(3,4,2,3)) #row, column, layer, block
+BR
+
+### Subsets, Extractions, and Replacements
+
+AR[2,,2]
+
+AR[2,c(3,1),2]
+
+AR[1,,]
+
+BR[2, 1, 1, 3]
+
+BR[1,,,1]
+
+BR[,,2,]
+
+BR[3:2, 4,,]
+
+BR[2,,1,]
+
+# Exercise 3.3
+
+#a.
+
+arrayA <- array(seq(from=4.8, to=0.1, length.out=144), dim=c(4, 2, 6, 3))
+arrayA
+
+#b.
+
+extractA <- arrayA[c(4,1), 2,,]
+extractA
+
+#c.
+
+#d.
+
+#e.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
