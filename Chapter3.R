@@ -229,80 +229,14 @@ extractA
 
 #c.
 
+matrixC <- array(rep(extractA[2], times=4), dim=c(2,2,2,3))
+matrixC
 #d.
+
+arrayD <- arrayA[,,-6,]
+arrayD
 
 #e.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+arrayD[c(2, 4), 2, c(1,3,5),] <- -99
+arrayD
