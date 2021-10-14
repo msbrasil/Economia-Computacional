@@ -354,3 +354,133 @@ gsub(pattern='wood', replacement = 'metal',bar)
 
 ## Factors
 
+### Identifying Categories
+
+firstname <- c("Liz", "Jolene", "Susan", "Boris", "Rochelle", "Tim",
+               "Simon", "Amy")
+
+sex.num <- c(0, 0, 0, 1, 0, 1, 1, 0)
+
+sex.char <- c("female", "female", "female", "male", "female", "male",
+              "male", "female")
+
+sex.num.fac <- factor(x=sex.num) #create a factor variable.
+sex.num.fac
+
+sex.char.fac <- factor(x=sex.char)
+sex.char.fac
+
+levels(sex.char.fac) #extract the levels from a factor
+levels(sex.num.fac)
+
+levels(sex.num.fac) <- c(1, 2) #relable factor using levels()
+sex.num.fac
+
+sex.char.fac[2:5] #factors vectors are subsseted like any other vector
+sex.char.fac[c(1:3, 5, 8)]
+
+sex.num.fac == '2'
+
+firstname[sex.char.fac=='male']
+
+### Defining and ordering Levels
+
+mob <- c("Apr", "Jan", "Dec", "Sep", "Nov", "Jul", "Jul", "Jun")
+
+mob[2]
+mob[3]
+mob[2]<mob[3]
+
+ms <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov",
+        "Dec")
+mob.fac <- factor(x=mob, levels = ms, ordered = T)
+mob.fac
+
+mob.fac[2]
+mob.fac[3]
+mob.fac[2]<mob.fac[3]
+
+### Combining and Cutting
+
+foo <- c(5.1, 3.3, 3.1, 4)
+bar <- c(4.5, 1.2)
+c(foo, bar) #this dont work with factor-valued vectors
+
+new.values <- factor(x=c('Oct', 'Feb','Feb'), levels = levels(mob.fac),
+                     ordered = T)
+new.values
+
+c(mob.fac, new.values)
+
+mob.new <- levels(mob.fac)[c(mob.fac, new.values)]
+mob.new.fac <- factor(x=mob.new, levels=levels(mob.fac), ordered=T)
+mob.new.fac
+
+Y <- c(0.53, 5.4, 1.5, 3.33, 0.45, 0.01, 2, 4.2, 1.99, 1.01)
+br <- c(0, 2, 4, 6)
+
+lab <- c('Small', 'Medium', 'Large')
+
+cut(x=Y, breaks = br, right = F, include.lowest = T, labels = lab)
+
+# Exercise 4.5
+
+#a.
+
+nz.sex <- c(1:20)
+nz.sex[1:20] <- 'M'
+nz.sex[c(1, 5:7, 14:16)] <- 'F'
+nz.sex
+
+nz.party <- c(1:20)
+nz.party[1:20] <- 'National'
+nz.party[c(1, 4, 12, 15, 16, 19)] <- 'Labour'
+nz.party[c(6, 9, 11)] <- 'Greens'
+nz.party[c(10, 20)] <- 'Other'
+nz.party
+
+#b.
+
+nz.sex.fac <- factor(x=nz.sex, levels=(c('M', 'F')))
+nz.sex.fac
+
+nz.party.fac <- factor(x=nz.party, levels=c('National','Labour','Greens','Maori','Other'))
+nz.party.fac
+
+#c.
+
+nz.party.fac[nz.sex.fac=='M']
+
+nz.sex.fac[nz.party.fac=='National']
+
+#d.
+
+new.survey.sex <- factor(x=c("M","M","F","F","F","M"), 
+                         levels = levels(nz.sex.fac))
+new.survey.sex
+
+new.survey.party <- factor(x=c("National","Maori","Maori",
+                               "Labour","Greens","Labour"), 
+                              levels = levels(nz.party.fac))
+new.survey.party
+
+nz.sex.fac <- c(nz.sex.fac, new.survey.sex)
+nz.sex.fac
+
+nz.party.fac <- c(nz.party.fac, new.survey.party)
+nz.party.fac
+
+#e.
+
+lab <- ('Low','Moderate','High')
+br <- c(0, 30, 70, 100)
+
+conf.percent <- c(93, 55, 29, 100,52, 84, 56, 0, 
+                  33, 52, 35, 53, 55, 46, 40, 40, 
+                  56, 45, 64, 31, 10, 29, 40, 95, 18, 61)
+
+#f.
+
+conf.percent.fac <- cut(x=conf.percent, breaks = br, right = T, include.lowest = T, labels = lab)
+conf.percent.fac[nz.party.fac=='Labour']
+conf.percent.fac[nz.party.fac=='National']
