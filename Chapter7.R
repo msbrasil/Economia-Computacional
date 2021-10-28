@@ -126,4 +126,98 @@ legend("bottomleft",
 plot(x=0, y=0,type='n', main='Exercise a.', 
      xlim=c(-3,3), ylim=c(7,13))
 
-abline(h=c(13,7),col="gray",lty=2,lwd=2)
+abline(h=c(13,7),col="gray",lty=2,lwd=2) #linha horizontal
+
+segments(x0=c(-3,3),y0=c(6,6), #linha vertical
+         x1=c(-3,3),y1=c(14,14),
+         col="gray", lty=2, lwd=2)
+
+arrows(x0=-2.5,y0=12.5,x1=-1,y1=10.5, lwd=2, col='gray')
+arrows(x0=-2.5,y0=10,x1=-1,y1=10, lwd=2, col='gray')
+arrows(x0=-2.5,y0=7.5,x1=-1,y1=9.5, lwd=2, col='gray')
+arrows(x0=2.5,y0=12.5,x1=1,y1=10.5, lwd=2, col='gray')
+arrows(x0=2.5,y0=10,x1=1,y1=10, lwd=2, col='gray')
+arrows(x0=2.5,y0=7.5,x1=1,y1=9.5, lwd=2, col='gray')
+
+text('SOMETHING \nPROFUND', x=0, y=10 )
+
+#b.
+
+#creating the dataframe
+
+weight <- c(55, 85, 75, 42, 93, 63, 58, 75, 89, 67)
+height <- c(161, 185, 174, 154, 188, 178, 170, 167, 181, 178)
+sex <- c('female', 'male','male','female','male','male',
+         'female','male','male','female')
+
+datab <- data.frame(weight, height, sex)
+datab
+
+plot(x=weight, y=height, type = 'p', )
+
+points(datab$sex=='female',datab$sex=='female', pch=8,  col='red', cex=2)
+# return to this exercise and try to plot points on different colors
+
+## The ggplot2 Package
+
+### A Quick Plot with qplot
+
+library(ggplot2)
+
+foo <- c(1.1,2,3.5,3.9,4.2)
+bar <- c(2,2.2,-1.3,0,0.2)
+foo
+bar
+
+qplot(foo, bar)
+
+qplot(foo, bar, main='My lovely qplot', xlab='x axis label', 
+      ylab='location y')
+
+baz <- plot(foo, bar)
+baz #return null
+
+qux <- qplot(foo, bar)
+qux
+
+### Setting Appearance COnstants with Geoms
+
+qplot(foo, bar, geom='blank') + geom_point() + geom_line()
+#first they plot a current empty object, then plot points and lines
+
+qplot(foo, bar, geom='blank') + geom_point(size=3, shape=6, color='blue') +
+  geom_line(color='red', linetype=2)
+
+#try store the qplot first and experiment others geom_points
+myqplot <- qplot(foo, bar, geom='blank') + geom_line(color='red', linetype=2)
+myqplot + geom_point(size=3, shape=3, color='blue')
+myqplot + geom_point(size=3, shape=7, color='green') #shape <= 25
+
+### Aesthetic Mapping with Geoms
+
+x <- 1:20
+y <- c(-1.49,3.37,2.59,-2.78,-3.94,-0.92,6.43,8.51,3.41,-8.23,
+          -12.01,-6.58,2.87,14.12,9.63,-4.58,-14.78,-11.67,1.17,15.62)
+
+ptype <- rep(NA, length(x=x))
+ptype[y>=5] <- 'too_big'
+ptype[y<=-5] <- 'too_small'
+ptype[(x>=5&x<=15)&(y>-5&y<5)] <- 'sweet'
+ptype[(x<5|x>15)&(y>-5&y<5)] <- 'standard'
+ptype <- factor(x=ptype)
+ptype
+
+qplot(x, y, color=ptype, shape=ptype)
+
+qplot(x, y, color=ptype, shape=ptype) + geom_point(size=4) + #all points size 4
+  geom_line(mapping=aes(group=1), color='black', lty=2) +
+  geom_hline(mapping=aes(yintercept=c(-5,5)),color="red") + #horizontal lines
+  geom_segment(mapping=aes(x=5,y=-5,xend=5,yend=5),color="red",lty=3) +
+  geom_segment(mapping=aes(x=15,y=-5,xend=15,yend=5),color="red",lty=3)
+
+# Exercise 7.2
+
+datab
+
+qplot(datab$weight, datab$height, col=sex) + 
+  geom_point(shape = 10, size=3)
