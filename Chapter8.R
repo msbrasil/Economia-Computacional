@@ -118,14 +118,16 @@ q5.dframe <- read.table(file='q5.txt', sep = '!')
 q5.dframe
 
 #b.
+library(ggplot2)
 library(car)
 data("Duncan")
-x <- Duncan$education
-y <- Duncan$income
 
-plot(x, y, geom='blank', xlab='Education',ylab='Income', 
-                          xlim=c(0, 100), ylim=c(0, 100), type='p') +
-  points(x[y<=80],y[y<=80],col="black") +
-  points(x[y>80], y[y>80], col='blue')
+Duncan
+education <- Duncan$education
+education
 
-#work this later.
+income <- Duncan$income
+income
+length(education)
+
+ggplot(data = Duncan, mapping=aes(x=education, y=income)) +  geom_point()

@@ -1,15 +1,16 @@
 #R for Basic Math
+
 ## Arithmetic
+  #how to make basic operations
+2 + 3  #plus
 
-2 + 3
+14/6 #divide
 
-14/6
+14/6+5 #R respect de operations order
 
-14/6+5
+14/(6 + 5) #operations into parentheses have preference
 
-14/(6 + 5)
-
-3 ^ 2
+3 ^ 2 #power
 
 2 ^ 3
 
@@ -21,12 +22,12 @@ sqrt(x=5.311)
 
 log(x = 243, base = 3) #Logarithms
 
-exp(x=3) #exponencial na base e
+exp(x=3) #base e exponencial
 
 ## E-Notation
 
 #2.3421510129e12, which is equivalent to writing 2.3421510129 × 10 12
-
+# Basically when a number is to high, R don't show all numbers, just flag with e+ and how far he goes.
 2342151012900 
 
 0.0000002533 #its 10^-7
