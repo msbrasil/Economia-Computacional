@@ -117,7 +117,7 @@ myvec3
 
 ### Sequences, Repetition, Sorting, and Lengths
 
-3:27 #sequence for 3 to 27 by 1
+3:27 #sequence for 3 to 27 step 1 by 1
 
 foo <- 5.3
 
@@ -176,12 +176,12 @@ foo <- seq(from = 4.3,
            to = 5.5,
            length.out = 8)
 foo
-bar <- sort (x = foo, decreasing = TRUE)
+bar <- sort(x = foo, decreasing = TRUE)
 bar
 
 sort(x = c(foo, bar), decreasing = FALSE)
 
-#### Finding a vector length with length
+#### Finding a vector length with length()
 
 length(x = c(3, 2, 8, 1))
 
@@ -200,24 +200,35 @@ bar <-
     ))
 length(bar)
 
-## Exercise 2.3
+#### Exercise 2.3 ####
 
-#a.
+#a. Create and store a sequence of values from 5 to −11 that 
+   #progresses in steps of 0.3.
 
-seqA <- seq(from = 5, to = -11, by = -0.3)
+
+seqA <- seq(from = 5, to = -11, by = -0.3) #(correct)
 seqA
 
-#b.
+#b. Overwrite the object from (a) using the same sequence with the
+   #order reversed.
 
-seqA <- sort(seqA, decreasing = FALSE)
+seqA <- sort(seqA, decreasing = FALSE) #(correct)
 seqA
 
-#c.
+#c. Repeat the vector c(-1,3,-5,7,-9) twice, with each element
+   #repeated 10 times, and store the result. Display the result sorted
+   #from largest to smallest.
 
-vecC <- rep(c(-1, 3, -5, 7, -9), times = 2, each = 10)
+vecC <- rep(c(-1, 3, -5, 7, -9), times = 2, each = 10) #(correct)
 sort(vecC, decreasing = TRUE)
 
-#d.
+#d. Create and store a vector that contains, in any configuration, the following:
+#i. A sequence of integers from 6 to 12 (inclusive)
+#ii. A threefold repetition of the value 5.3
+#iii. The number −3
+#iv. A sequence of nine values starting at 102 and ending at the
+#number that is the total length of the vector created in (c)
+
 
 vecD <-
   c(6:12,
@@ -227,18 +238,18 @@ vecD <-
       to = length(vecC),
       length.out = 9
     ))
-vecD
+vecD #(correct)
 
-#e.
+#e. Confirm that the length of the vector created in (d) is 20.
 
-length(vecD)
+length(vecD) #(correct)
 
 ### Subsetting and Element Extraction
 
 myvec <- c(5, -2.3, 4, 4, 4, 6, 8, 10, 40221, -8)
 length(myvec)
 
-myvec[1] #access individual element
+myvec[1] #access individual element by index
 
 foo <- myvec[2]
 foo
@@ -285,43 +296,52 @@ bar
 bar[7:10] <- 100
 bar
 
-# Exercise 2.4
+#### Exercise 2.4 ####
 
-#a.
+#a.  Create and store a vector that contains the following, in this order:
+#– A sequence of length 5 from 3 to 6 (inclusive)
+#– A twofold repetition of the vector c(2,-5.1,-33)
+#– The value 7/42 + 2
 
 exvec <-
   c(seq(3, 6, length.out = 5), rep(c(2, -5.1, -33), times = 2), (7 / 42 + 2))
-exvec
+exvec #(correct)
 
-#b.
+#b. Extract the first and last elements of your vector from (a), storing
+   #them as a new object.
 
-firstAndLastElement <- exvec[c(1, 12)]
-firstAndLastElement
+firstAndLastElement <- exvec[c(1, length(exvec))]
+firstAndLastElement #(correct)
 
-#c.
+#c. Store as a third object the values returned by omitting the first
+   #and last values of your vector from (a).
 
-FirstAndLastOmitted <- exvec[c(-1, -12)]
+FirstAndLastOmitted <- exvec[-c(1, length(exvec))] #(correct)
 FirstAndLastOmitted
 
-#d.
+#d. Use only (b) and (c) to reconstruct (a).
 
 reconstructedVec <-
   c(firstAndLastElement[1],
     FirstAndLastOmitted,
     firstAndLastElement[2])
-reconstructedVec
+reconstructedVec #(correct) 
 
-#e.
+#e.Overwrite (a) with the same values sorted from smallest to largest.
 
 exvec <- sort(exvec)
-exvec
+exvec #(correct)
 
-#f.
+#f.Use the colon operator as an index vector to reverse the order
+  #of (e), and confirm this is identical to using sort on (e) with
+  #decreasing=TRUE.
 
-exvec[12:1]
-sort(exvec, decreasing = TRUE)
+exvec[length(exvec):1]
+sort(exvec, decreasing = TRUE) #(correct)
 
-#g.
+#g. Create a vector from (c) that repeats the third element of (c)
+#three times, the sixth element four times, and the last element once.
+
 
 repeatedElements <-
   c(
@@ -329,15 +349,18 @@ repeatedElements <-
     rep(FirstAndLastOmitted[6], times = 4),
     length(FirstAndLastOmitted)
   )
-repeatedElements
+repeatedElements #(correct)
 
-#h.
+#h. Create a new vector as a copy of (e) by assigning (e) as is to a
+   #newly named object. Using this new copy of (e), overwrite the
+   #first, the fifth to the seventh (inclusive), and the last element with
+   #the values 99 to 95 (inclusive), respectively.
 
 copyE <- exvec
 copyE
 
-copyE[c(1, 5:7, 12)] <- c(99:94)
-copyE
+copyE[c(1, 5:7, 12)] <- c(99:95)
+copyE #(correct)
 
 ### Vector-Oriented Behavior
 
@@ -363,19 +386,33 @@ prod(foo) #their product
 foo[c(1, 3, 5, 6)] <- c(-99, 99)
 foo
 
-### Exercise 2.5
+#### Exercise 2.5 ####
 
-#a. dont know how to do that
+#a.  Convert the vector c(2,0.5,1,2,0.5,1,2,0.5,1) to a vector of only
+    #1s, using a vector of length 3.
 
-#b.
+c(2, 0.5, 1, 2, 0.5, 1, 2, 0.5, 1) / c(2, 0.5, 1)
+
+#b. The conversion from a temperature measurement in degrees
+   #Fahrenheit F to Celsius C is performed using the following
+   #equation: C = 5/9*(F − 32)
+   #vector-oriented behavior in R to convert the temperatures 
+   #45, 77, 20, 19, 101, 120, and 212 in degrees Fahrenheit to
+   #degrees Celsius.
 
 fahrenheit <- c(45, 77, 20, 19, 101, 120, 212)
 
-(fahrenheit - 32) * (5 / 9)
+(fahrenheit - 32) * (5 / 9) #(correct)
 
-#c.
+#c.Use the vector c(2,4,6) and the vector c(1,2) in conjunction with
+  #rep and * to produce the vector c(2,4,6,4,8,12)
 
-vecC <- rep(c(1, 2), times = 2) * c(2, 4, 6)
+vecC <- rep(c(1, 2), each = 3) * c(2, 4, 6)
+vecC #(correct)
+
+
+#d. Overwrite the middle four elements of the resulting vector from
+   #(c) with the two recycled values -0.1 and -100, in that order
+
+vecC[2:5]  <- c(-0.1, -100)
 vecC
-
-#d.alteração
