@@ -1,7 +1,10 @@
 #R for Basic Math
 
-## Arithmetic
+#### Arithmetic ####
+
+
 #how to make basic operations
+
 2 + 3  #plus
 
 14 / 6 #divide
@@ -10,7 +13,7 @@
 
 14 / (6 + 5) #operations into parentheses have preference
 
-3 ^ 2 #power
+3 ^ 2 #exponential
 
 2 ^ 3
 
@@ -18,13 +21,13 @@ sqrt(x = 9) #square root
 
 sqrt(x = 5.311)
 
-## Logarithms and Exponentials
+#### Logarithms and Exponentials ####
 
 log(x = 243, base = 3) #Logarithms
 
 exp(x = 3) #base e exponential
 
-## E-Notation
+#### E-Notation ####
 
 #2.3421510129e12, which is equivalent to writing 2.3421510129 × 10 12
 # Basically when a number is to high, R don't show all numbers, just flag with e+ and how far he goes.
@@ -32,33 +35,36 @@ exp(x = 3) #base e exponential
 
 0.0000002533 #its 10^-7
 
-# Exercise 2.1
+#### Exercise 2.1 ####
 
-#a)
+#a) Using R, verify that (equation in book)
+ 
+(6 * (2.3) + 42) / 3 ^ (4.2 - 3.62) #(correct)
 
-(6 * (2.3) + 42) / 3 ^ (4.2 - 3.62)
+#b) Which of the following squares negative 4 and adds 2 to the result?
 
-#b)
+#i.
+(-4) ^ 2 + 2 #(correct)
 
-(-4) ^ 2 + 2
+#c) Using R, how would you calculate the square root of half of the
+   #average of the numbers 25.2, 15, 16.44, 15.3, and 18.6?
 
-#c)
+sqrt(x = 0.5 * ((25.2 + 15 + 16.44 + 15.3 + 18.6) / 5)) #(correct)
 
-sqrt(x = 0.5 * ((25.2 + 15 + 16.44 + 15.3 + 18.6) / 5))
+#d) Find loge 0.3
 
-#d)
+log(x = 0.3) #(correct)
 
-log(x = 0.3)
+#e) Compute the exponential transform of your answer to (d).
 
-#e)
+exp(-1.203973) #(correct)
 
-exp(-1.203973) #so close
+#f) Identify R’s representation of −0.00000000423546322 when
+    #printing this number to the console.
 
-#f)
+-0.00000000423546322 #(correct)
 
--0.00000000423546322
-
-## Assigning Objects
+#### Assigning Objects ####
 
 x <- -5     #assignment in R
 x
@@ -73,36 +79,37 @@ y
 
 ls() #list variables
 
-# Exercise 2.2
+#### Exercise 2.2 ####
 
 #a.
 
-newValue <- 3 ^ 2 * 4 ^ (1 / 8)
-newValue
+valueA <- 3 ^ 2 * 4 ^ (1 / 8)
+valueA
 
 #b.
 
-newValue = newValue / 2.33
-newValue
+valueA = valueA / 2.33
+valueA
 
 #c.
 
-newValue2 <- -8.2 * 10e-13
+valueC <- -8.2e-13
+valueC
 
 #d.
 
-newValue * newValue2
+valueA * valueC
 
-## Vectors
+#### Vectors ####
 
 ### Creating a Vector
 
-myvec <- c(1, 3, 1, 42) #create a vector
+myvec <- c(1, 3, 1, 42) #how to create a vector
 myvec
 
 foo <- 32.1
 
-myvec2 <- c(3,-3, 2, 3.45, 1e+03, 64 ^ 0.5, 2 + (3 - 1.1) / 9.44, foo)
+myvec2 <- c(3, -3, 2, 3.45, 1e+03, 64 ^ 0.5, 2 + (3 - 1.1) / 9.44, foo)
 myvec2 #create with calculations and stored items
 
 myvec3 <- c(myvec, myvec2) #vector of vectors
@@ -161,9 +168,9 @@ c(3,
 
 #### Sorting with sort
 
-sort(x = c(2.5,-1,-10, 3.44), decreasing = FALSE) #lowest to highest value
+sort(x = c(2.5, -1, -10, 3.44), decreasing = FALSE) #lowest to highest value
 
-sort(x = c(2.5,-1,-10, 3.44), decreasing = TRUE)
+sort(x = c(2.5, -1, -10, 3.44), decreasing = TRUE)
 
 foo <- seq(from = 4.3,
            to = 5.5,
@@ -207,15 +214,14 @@ seqA
 
 #c.
 
-vecC <- rep(c(-1, 3,-5, 7,-9), times = 2, each = 10)
+vecC <- rep(c(-1, 3, -5, 7, -9), times = 2, each = 10)
 sort(vecC, decreasing = TRUE)
 
 #d.
 
 vecD <-
   c(6:12,
-    rep(x = 5.3, times = 3),
-    -3,
+    rep(x = 5.3, times = 3),-3,
     seq(
       from = 102,
       to = length(vecC),
@@ -229,7 +235,7 @@ length(vecD)
 
 ### Subsetting and Element Extraction
 
-myvec <- c(5,-2.3, 4, 4, 4, 6, 8, 10, 40221,-8)
+myvec <- c(5, -2.3, 4, 4, 4, 6, 8, 10, 40221, -8)
 length(myvec)
 
 myvec[1] #access individual element
@@ -273,7 +279,7 @@ bar
 bar[1] <- 6 #overwrite certain element
 bar
 
-bar[c(2, 4, 6)] <- c(-2,-0.5,-1)
+bar[c(2, 4, 6)] <- c(-2, -0.5, -1)
 bar
 
 bar[7:10] <- 100
@@ -284,7 +290,7 @@ bar
 #a.
 
 exvec <-
-  c(seq(3, 6, length.out = 5), rep(c(2,-5.1,-33), times = 2), (7 / 42 + 2))
+  c(seq(3, 6, length.out = 5), rep(c(2, -5.1, -33), times = 2), (7 / 42 + 2))
 exvec
 
 #b.
@@ -294,7 +300,7 @@ firstAndLastElement
 
 #c.
 
-FirstAndLastOmitted <- exvec[c(-1,-12)]
+FirstAndLastOmitted <- exvec[c(-1, -12)]
 FirstAndLastOmitted
 
 #d.
@@ -340,10 +346,10 @@ foo
 
 foo - c(2, 4, 6, 8, 10, 12) #operation on multiples elements
 
-bar <- c(1,-1)
+bar <- c(1, -1)
 foo * bar
 
-baz <- c(1,-1, 0.5,-0.50)
+baz <- c(1, -1, 0.5, -0.50)
 
 foo * baz #vector lengths are not even divisible
 
