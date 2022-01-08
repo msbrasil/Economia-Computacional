@@ -307,20 +307,21 @@ foo[c(0, 1)]
 
 foo <- 'This is a character string!'
 foo
-length(foo)
+length(foo) 
 nchar(foo) #count individual number of characters
 
 bar <- "23.3"
 bar
 
-bar * 2
+bar * 2 #cant do it operations between string and number
 
+#strings can be compared 
 'alpha' == 'alpha'
 'alpha' != 'beta'
-c('alpha', 'beta', 'gamma') == 'beta'
+c('alpha', 'beta', 'gamma') == 'beta' 
 
-'alpha' <= 'beta'
-'gamma' > 'Alpha'
+'alpha' <= 'beta' #R considers letters come later in alphabet...
+'gamma' > 'Alpha' #... greather than earlier
 
 'Alpha' > 'alpha'
 'beta' >= 'bEtA'
@@ -347,14 +348,13 @@ cat("Do you think ", qux[2], " ", qux[3], " ", qux[1], "?", sep = "")
 a <- 3
 b <- 4.4
 
-cat("The value stored as 'a' is ", a, ".", sep = "") #coerce these itens into strings
+cat("The value stored as 'a' is ", a, ".", sep = "") #coerce the numbers into strings
 
 paste("The value stored as 'b' is ", b, ".", sep = "")
 
 cat("The result of a+b is ", a, "+", b, "=", a + b, ".", sep = "")
 
-paste("Is ", a + b, " less than 10? That's totally ", a + b < 10, ".", sep =
-        "")
+paste("Is ", a + b, " less than 10? That's totally ", a + b < 10, ".", sep ="")
 
 ### Escape Sequences
 
@@ -388,31 +388,54 @@ sub(pattern = "chuck",
 
 gsub(pattern = "chuck",
      replacement = "hurl",
-     x = bar) #search every istance
+     x = bar) #search every instance
 
 #### Exercise 4.4 ####
 
-#a.
+#a. Re-create exactly the following output: (in book)
 
-cat("the quick brown fox\njumped over\n\tthe lazy dogs")
+cat("\"The quick brown fox\n\tjumped over\n\t\tthe lazy dogs\"") #correct
 
-#b.
+#b. Suppose you’ve stored the values num1 <- 4 and num2 <- 0.75.
+#Write a line of R code that returns the following string:
+#  [1] "The result of multiplying 4 by 0.75 is 3"
 
 num1 <- 4
 num2 <- 0.75
 
-cat('The result of multiplying', num1, 'by', num2, 'is', num1 * num2)
+cat('The result of multiplying', num1, 'by', num2, 'is', num1 * num2) #correct
 
-#c.
+#c.On my local machine, the directory for my work on this book is
+#specified in R as "/Users/tdavies/Documents/RBook/". Imagine it is
+#your machine—write a line of code that replaces tdavies in this
+#string with your first initial and surname.
 
-'/Users/mymachine/Documents/RBook/'
+sub(pattern = 'tdavies',
+    replacement = 'matheus',
+    x = '/Users/tdavies/Documents/RBook/') #correct
 
-#d.
+#d.  In Section 4.2.4, you stored the following string:
+#R> bar <- "How much wood could a woodchuck chuck"
+#i. Store a new string by gluing onto bar the words
+#"if a woodchuck could chuck wood".
+#ii. In the result of (i), replace all instances of wood with metal.
 
-bar <- "if a woodchuck could chuck wood"
-gsub(pattern = 'wood', replacement = 'metal', bar)
+bar <- "if a woodchuck could chuck wood" 
 
-#e.
+baz <- paste(bar, 'if a woodchuck could chuck wood')
+
+gsub(pattern = 'wood', replacement = 'metal', baz) #correct
+
+#e.Store the string "Two 6-packs for $12.99". Then do the following:
+#i. Use a check for equality to confirm that the substring
+#beginning with character 5 and ending with character 10 is "6-pack".
+#ii. Make it a better deal by changing the price to $10.99.
+
+foo <- 'Two 6-packs for $12.99'
+
+substr(foo, start=5, stop=10) == '6-pack' #correct
+
+substr(foo, start=18, stop=23) <- '10.99' #correct
 
 #### Factors ####
 
@@ -525,37 +548,48 @@ cut(
 
 #### Exercise 4.5 ####
 
-#a.
+#a.Use your knowledge of vectors (for example, subsetting and
+#overwriting) to create two character vectors: sex with entries
+#"M" (male) and "F" (female) and party with entries "National",
+#"Labour", "Greens", "Maori", and "Other". Make sure the entries are
+#placed in the correct positions as outlined earlier.
 
 nz.sex <- c(1:20)
 nz.sex[1:20] <- 'M'
 nz.sex[c(1, 5:7, 14:16)] <- 'F'
-nz.sex
+nz.sex #correct
 
 nz.party <- c(1:20)
 nz.party[1:20] <- 'National'
 nz.party[c(1, 4, 12, 15, 16, 19)] <- 'Labour'
 nz.party[c(6, 9, 11)] <- 'Greens'
 nz.party[c(10, 20)] <- 'Other'
-nz.party
+nz.party #correct
 
-#b.
+#b. Create two different factor vectors based on sex and party. Does
+#it make any sense to use ordered=TRUE in either case? How has R
+#appeared to arrange the levels?
 
 nz.sex.fac <- factor(x = nz.sex, levels = (c('M', 'F')))
-nz.sex.fac
+nz.sex.fac #correct
 
 nz.party.fac <-
   factor(x = nz.party,
          levels = c('National', 'Labour', 'Greens', 'Maori', 'Other'))
-nz.party.fac
+nz.party.fac #correct
 
-#c.
+#c. Use factor subsetting to do the following:
+#i. Return the factor vector of chosen parties for only the male participants.
+#ii. Return the factor vector of genders for those who chose National.
 
-nz.party.fac[nz.sex.fac == 'M']
+nz.party.fac[nz.sex.fac == 'M'] #correct
 
-nz.sex.fac[nz.party.fac == 'National']
+nz.sex.fac[nz.party.fac == 'National'] #correct
 
-#d.
+#d. Another six people joined the survey, with the results
+#c("National","Maori","Maori","Labour","Greens","Labour") for the
+#preferred party and c("M","M","F","F","F","M") as their gender.
+#Combine these results with the original factors from (b).
 
 new.survey.sex <- factor(x = c("M", "M", "F", "F", "F", "M"),
                          levels = levels(nz.sex.fac))
@@ -574,7 +608,10 @@ nz.sex.fac
 nz.party.fac <- c(nz.party.fac, new.survey.party)
 nz.party.fac
 
-#e.
+#e. Create a factor with levels of confidence as follows: Low for
+#percentages [0,30]; Moderate for percentages (30,70]; and
+#High for percentages (70,100].
+
 
 lab <- ('Low', 'Moderate', 'High')
 br <- c(0, 30, 70, 100)
@@ -606,7 +643,9 @@ conf.percent <- c(93,
                   18,
                   61)
 
-#f.
+#f. From (e), extract the levels corresponding to those individuals
+#who originally said they identified with Labour. Do this also for
+#National. What do you notice?
 
 conf.percent.fac <-
   cut(
